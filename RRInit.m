@@ -20,15 +20,19 @@ function [ robot ] = RRInit(  )
 % 
 
 
-robot.m_1 = []; % [kg]
-robot.m_2 = []; % [kg]
-robot.m_r1 = []; % [kg]
-robot.m_r2 = []; % [kg]
-robot.l_1 = []; % [m]
-robot.l_2 = []; % [m]
+robot.m_1 = 1; % [kg]
+robot.m_2 = 5; % [kg]
+robot.m_r1 = 2.3; % [kg]
+robot.m_r2 = 2.3; % [kg]
+robot.l_1 = 1; % [m]
+robot.l_2 = 1.41; % [m]
 robot.g = 9.81; % [m/s^2]
-robot.tool = [];
-robot.workspace = []; % only used to determine size of figure window
+robot.tool = []; % transformation
+robot.workspace = [-robot.l_1 - robot.l_2, robot.l_1 + robot.l_2,...
+    -robot.l_1 - robot.l_2, robot.l_1 + robot.l_2,...
+    -robot.l_2, robot.l_2]; 
+% only used to determine size of figure window
+% [xmin xmax ymin ymax zmin zmax]
 robot.colors = {[0,0,0],[0,0,0],[0,0,0]};
 
 end
