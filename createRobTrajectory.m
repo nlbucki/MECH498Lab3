@@ -19,8 +19,13 @@ function [ trajectory ] = createRobTrajectory( via, rob )
 %    and rows 5 7 should contain joint velocities.
 
 t_f = 30; % final time (do not change) [s]
+dt = 0.1;
 
-trajectory(1,:) = []; %Time
+for t = 0:dt:tf
+    
+end
+
+trajectory(1,:) = 0:dt:tf; %Time
 trajectory(2:4,:) = []; %Joint angles
 trajectory(5:7,:) = []; %Joiint velocities
 

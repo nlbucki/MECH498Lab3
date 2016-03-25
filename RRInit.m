@@ -27,13 +27,13 @@ robot.m_r2 = 2.3; % [kg]
 robot.l_1 = 1; % [m]
 robot.l_2 = 1.41; % [m]
 robot.g = 9.81; % [m/s^2]
-robot.tool = makehgtform('translate', [0.25 0 0]); % transformation
+robot.tool = makehgtform('translate', [robot.l_2 0 0]); % transformation
 robot.workspace = [-robot.l_1 - robot.l_2, robot.l_1 + robot.l_2,...
     -robot.l_1 - robot.l_2, robot.l_1 + robot.l_2,...
     -robot.l_2, robot.l_2]; 
 % only used to determine size of figure window
 % [xmin xmax ymin ymax zmin zmax]
-robot.colors = {[0,0,0],[0,0,0],[0,0,0]};
+robot.colors = {[1,0,0],[1,1,0],[0,0,1]};
 
 end
 

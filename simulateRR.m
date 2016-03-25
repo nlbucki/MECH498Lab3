@@ -17,14 +17,14 @@ close all;
 robot = RRInit();
 
 % Joint Torque Limit
-tau_max = []; % [N-m] (Scalar)
+tau_max = 20; % [N-m] (Scalar)
 
 % Time
-dt = []; % [s]
-t_f = []; % [s]
+dt = 0.01; % [s]
+t_f = 10; % [s]
 
 % Initial Conditions
-X_0 = [];
+X_0 = [pi/3 pi/2];
 
 % Control Gains (Scalar)
 K_p = [];
@@ -36,7 +36,7 @@ X = []; % initialize variable to hold state vector
 X_dot = []; % initialize variable to hold state vector derivatives
 for i = 1:length(t)
     if i == 1
-
+        
     else
 
     end
@@ -65,9 +65,9 @@ for i = 1:length(t)
 end
 
 % Graphical Simulation
-robot.handles = drawRR([],robot);
+robot.handles = drawRR(X_0,robot);
 for i = 2:length(t)
-    setRR([],robot);
+    setRR(X(i,:),robot);
     pause(1e-6); % adjustable pause in seconds
 end
 
