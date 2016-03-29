@@ -19,15 +19,40 @@ function [ trajectory ] = createRobTrajectory( via, rob )
 %    and rows 5 7 should contain joint velocities.
 
 t_f = 30; % final time (do not change) [s]
-dt = 0.1;
 
-for t = 0:dt:tf
-    
+dt = 0.1;
+t = 0:dt:t_f;
+
+trajectory(1,:) = t; %Time
+
+d1 = abs(norm(via(:,1)) - norm(via(:,2)));
+d2 = abs(norm(via(:,2)) - norm(via(:,3)));
+d3 = abs(norm(via(:,3)) - norm(via(:,4)));
+totalD = d1 + d2 + d3;
+t1 = d1/totalD*t_f;
+t2 = t1 + d2/totalD*t_f;
+discTime = [0, t1, t2, t_f];
+
+x_values = interp1(discTime, via(1,:),t);
+y_values = interp1(discTime, via(2,:),t);
+z_values = interp1(discTime, via(3,:),t);
+ik_points = [x_values; y_values; z_values];
+plot3(x_values,y_values,z_values,':.');
+
+prev_joint_angles = zeros(3,1);
+for tStep = 1:length(t)
+    [~, trajectory(2:4,tStep)] = robIK(ik_points(:,tStep),prev_joint_angles, rob);
+    prev_joint_angles = trajectory(2:4,tStep);
 end
 
-trajectory(1,:) = 0:dt:tf; %Time
-trajectory(2:4,:) = []; %Joint angles
-trajectory(5:7,:) = []; %Joiint velocities
+% Forward difference
+trajectory(5:7,1) = (trajectory(2:4,2) - trajectory(2:4,1))/dt;
+% Backwards difference
+trajectory(5:7,end) = (trajectory(2:4,end) - trajectory(2:4,end-1))/dt;
+% Central difference
+for tStep = 2:length(t)-1
+    trajectory(5:7, tStep) = (trajectory(2:4,tStep+1) - trajectory(2:4,tStep-1))/(2*dt);
+end
 
 end
 
