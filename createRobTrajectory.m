@@ -25,9 +25,9 @@ t = 0:dt:t_f;
 
 trajectory(1,:) = t; %Time
 
-d1 = abs(norm(via(:,1)) - norm(via(:,2)));
-d2 = abs(norm(via(:,2)) - norm(via(:,3)));
-d3 = abs(norm(via(:,3)) - norm(via(:,4)));
+d1 = abs(norm(via(:,1) - via(:,2)));
+d2 = abs(norm(via(:,2) - via(:,3)));
+d3 = abs(norm(via(:,3) - via(:,4)));
 totalD = d1 + d2 + d3;
 t1 = d1/totalD*t_f;
 t2 = t1 + d2/totalD*t_f;
