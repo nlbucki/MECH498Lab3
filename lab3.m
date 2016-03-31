@@ -1,5 +1,4 @@
 %% simulateRR testing
-RR = RRInit();
 % drawRR([0 pi/2], RR);
 simulateRR();
 
