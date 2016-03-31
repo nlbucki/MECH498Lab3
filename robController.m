@@ -1,4 +1,4 @@
-function [ tau ] = robController( trajectory, Theta, Theta_dot, t , robot )
+function [ tau ] = robController( trajectory, Theta, Theta_dot, t , rob )
 % MECH 498/598 - Intro to Robotics - Spring 2016
 % Lab 3
 % Solutions by Craig McDonald
@@ -18,17 +18,21 @@ function [ tau ] = robController( trajectory, Theta, Theta_dot, t , robot )
 %
 
 % Robot Parameters from rob
-g = robot.parameters.g;...
-m_1 = robot.m_1;
-m_2 = robot.m_2;
-m_r1 = robot.m_r1;
-m_r2 = robot.m_r2;
-% M_1 = m_1 + m_r1;
-% M_2 = m_2 + m_r2;
-L_1 = robot.l_1;
-L_2 = robot.l_2;
+g = rob.parameters.g;
+b = rob.parameters.b;
+m1 = rob.parameters.m1;
+m2 = rob.parameters.m2;
+m3 = rob.parameters.m3;
+m4 = rob.parameters.m4;
+l1 = rob.parameters.l1;
+l2 = rob.parameters.l2;
+l3 = rob.parameters.l3;
+I1 = rob.parameters.I1;
+I2 = rob.parameters.I2;
+J1 = rob.parameters.J1;
+J2 = rob.parameters.J2;
+J3 = rob.parameters.J3;
 
-    
 % Gravity Compensation Vector
 G = [0; 0; g]; %[3x1] vector
 
@@ -42,12 +46,12 @@ end
 
 % Gravity Compensation Control
 
-K_p1 = 1;
-K_p2 = 1;
-K_p3 = 1;
-K_v1 = 1;
-K_v2 = 1;
-K_v3 = 1;
+K_p1 = 100;
+K_p2 = 100;
+K_p3 = 100;
+K_v1 = 100;
+K_v2 = 100;
+K_v3 = 100;
 
 K_p = [K_p1; K_p2; K_p3]; % Proportional gain matrix containing gains K_p1 to K_p3
 K_p = diag(K_p);
