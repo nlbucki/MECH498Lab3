@@ -1,5 +1,7 @@
-% robot = RRInit();
-% drawRR([0 pi/2], robot);
+%% simulateRR testing
+RR = RRInit();
+% drawRR([0 pi/2], RR);
+simulateRR();
 
 %% robInit testing
 rob = robInit();
