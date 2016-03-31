@@ -37,7 +37,7 @@ x_values = interp1(discTime, via(1,:),t);
 y_values = interp1(discTime, via(2,:),t);
 z_values = interp1(discTime, via(3,:),t);
 ik_points = [x_values; y_values; z_values];
-plot3(x_values,y_values,z_values,':.');
+% plot3(x_values,y_values,z_values,':.');
 
 prev_joint_angles = zeros(3,1);
 for tStep = 1:length(t)

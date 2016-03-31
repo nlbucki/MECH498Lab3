@@ -24,17 +24,24 @@ m1 = rob.parameters.m1;
 m2 = rob.parameters.m2;
 m3 = rob.parameters.m3;
 m4 = rob.parameters.m4;
-l1 = rob.parameters.l1;
-l2 = rob.parameters.l2;
-l3 = rob.parameters.l3;
-I1 = rob.parameters.I1;
-I2 = rob.parameters.I2;
-J1 = rob.parameters.J1;
-J2 = rob.parameters.J2;
-J3 = rob.parameters.J3;
+l1 = rob.parameters.l1*1e-3;
+l2 = rob.parameters.l2*1e-3;
+l3 = rob.parameters.l3*1e-3;
+% lc3 = l3*(m3/2+m4)/(m3+m4);
+% I1 = rob.parameters.I1;
+% I2 = rob.parameters.I2;
+% J1 = rob.parameters.J1;
+% J2 = rob.parameters.J2;
+% J3 = rob.parameters.J3;
 
 % Gravity Compensation Vector
-G = [0; 0; g]; %[3x1] vector
+% G = [0;
+%     (m3+m4)*lc3*g*cos(Theta(2) + Theta(3)) + (m2+m3+m4)*(l2/2)*g*cos(Theta(2));
+%     (m3+m4)*lc3*g*cos(Theta(2) + Theta(3))]; %[3x1] vector
+
+G = [0;
+    g*m2*l2/2*cos(Theta(2)) + g*m3*(l2*cos(Theta(2)) + l3/2*cos(Theta(2)+Theta(3))) + g*m4*(l2*cos(Theta(2)) + l3*cos(Theta(2) + Theta(3)));
+    g*m3*l3/2*cos(Theta(2)+Theta(3)) + g*m4*l3*cos(Theta(2) + Theta(3))];
 
 % Trajectory interpolation (DO NOT CHANGE)
 Theta_ref = zeros(3,1);
@@ -58,7 +65,7 @@ K_p = diag(K_p);
 K_v = [K_v1; K_v2; K_v3]; % Derivative gain matrix containing gains K_v1 to K_v3
 K_v = diag(K_v);
 
-tau = - K_p*(Theta - Theta_ref) - K_v*(Theta_dot); % control input (torque)
+tau = - K_p*(Theta - Theta_ref) - K_v*(Theta_dot - Theta_dot_ref) + G; % control input (torque)
 
 end
 
