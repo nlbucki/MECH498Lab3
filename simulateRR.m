@@ -1,3 +1,4 @@
+% Names: Nathan Bucki, and Shengliang Zhu
 function [  ] = simulateRR(  )
 % MECH 498 - Intro to Robotics - Spring 2016
 % Lab 3

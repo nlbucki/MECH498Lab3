@@ -1,3 +1,4 @@
+% Names: Nathan Bucki, and Shengliang Zhu
 function [ trajectory ] = createRobTrajectory( via, rob )
 % MECH 498/598 - Intro to Robotics - Spring 2016
 % Lab 3
@@ -29,8 +30,8 @@ d1 = abs(norm(via(:,1) - via(:,2)));
 d2 = abs(norm(via(:,2) - via(:,3)));
 d3 = abs(norm(via(:,3) - via(:,4)));
 totalD = d1 + d2 + d3;
-t1 = d1/totalD*t_f;
-t2 = t1 + d2/totalD*t_f;
+t1 = d1/totalD*t_f;        % Travelling time between first and second point
+t2 = t1 + d2/totalD*t_f;   % Travelling time between first and third point 
 discTime = [0, t1, t2, t_f];
 
 x_values = interp1(discTime, via(1,:),t);
@@ -39,6 +40,7 @@ z_values = interp1(discTime, via(3,:),t);
 ik_points = [x_values; y_values; z_values];
 % plot3(x_values,y_values,z_values,':.');
 
+% Inverse Kinematics
 prev_joint_angles = zeros(3,1);
 for tStep = 1:length(t)
     [~, trajectory(2:4,tStep)] = robIK(ik_points(:,tStep),prev_joint_angles, rob);

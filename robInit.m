@@ -1,3 +1,4 @@
+% Names: Nathan Bucki, and Shengliang Zhu
 function [ rob_struct ] = robInit()
 % MECH 498/598 - Intro to Robotics - Spring 2016
 % Lab 3

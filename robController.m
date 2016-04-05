@@ -1,3 +1,4 @@
+% Names: Nathan Bucki, and Shengliang Zhu
 function [ tau ] = robController( trajectory, Theta, Theta_dot, t , rob )
 % MECH 498/598 - Intro to Robotics - Spring 2016
 % Lab 3
@@ -27,17 +28,8 @@ m4 = rob.parameters.m4;
 l1 = rob.parameters.l1*1e-3;
 l2 = rob.parameters.l2*1e-3;
 l3 = rob.parameters.l3*1e-3;
-% lc3 = l3*(m3/2+m4)/(m3+m4);
-% I1 = rob.parameters.I1;
-% I2 = rob.parameters.I2;
-% J1 = rob.parameters.J1;
-% J2 = rob.parameters.J2;
-% J3 = rob.parameters.J3;
 
 % Gravity Compensation Vector
-% G = [0;
-%     (m3+m4)*lc3*g*cos(Theta(2) + Theta(3)) + (m2+m3+m4)*(l2/2)*g*cos(Theta(2));
-%     (m3+m4)*lc3*g*cos(Theta(2) + Theta(3))]; %[3x1] vector
 
 G = [0;
     g*m2*l2/2*cos(Theta(2)) + g*m3*(l2*cos(Theta(2)) + l3/2*cos(Theta(2)+Theta(3))) + g*m4*(l2*cos(Theta(2)) + l3*cos(Theta(2) + Theta(3)));

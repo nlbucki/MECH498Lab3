@@ -1,3 +1,4 @@
+% Names: Nathan Bucki, and Shengliang Zhu
 function [ robot ] = RRInit(  )
 % MECH 498 - Intro to Robotics - Spring 2014
 % Lab 4

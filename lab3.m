@@ -1,3 +1,4 @@
+% Names: Nathan Bucki, and Shengliang Zhu
 %% simulateRR testing
 % drawRR([0 pi/2], RR);
 simulateRR();
